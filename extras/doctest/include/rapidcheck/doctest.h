@@ -42,6 +42,7 @@ void check(const char*          d,
            std::source_location s = std::source_location::current())
 {
   using namespace rc::detail;
+  namespace doctest = ::doctest;
   using namespace doctest::detail;
 
   DOCTEST_SUBCASE(d)
