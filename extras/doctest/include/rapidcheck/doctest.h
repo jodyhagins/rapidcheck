@@ -36,7 +36,7 @@ namespace rc::doctest {
  *         this implementation is based.
  */
 template <class testable>
-void check(const char*          d,
+auto check(const char*          d,
            testable&&           t,
            bool                 v = false,
            std::source_location s = std::source_location::current())
@@ -57,7 +57,9 @@ void check(const char*          d,
         printResultMessage(r, std::cout);
         std::cout << std::endl;
       }
-
+#if defined(DOCTEST_CONFIG_ASSERTS_RETURN_VALUES)
+      return
+#endif
       REQUIRE(true);
     }
     else
