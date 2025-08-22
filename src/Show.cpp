@@ -69,5 +69,11 @@ void showValue(const char *value, std::ostream &os) {
   show(std::string(value), os);
 }
 
+void showValue(const void *value, std::ostream &os) {
+  auto flags = os.flags();
+  os << std::hex << std::showbase << value;
+  os.flags(flags);
+}
+
 } // namespace detail
 } // namespace rc

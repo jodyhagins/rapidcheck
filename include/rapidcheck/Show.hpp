@@ -60,13 +60,16 @@ void showValue(T value,
 
 void showValue(const std::string &value, std::ostream &os);
 void showValue(const char *value, std::ostream &os);
+void showValue(const void *value, std::ostream &os);
 
 template <typename T>
-void showValue(T *p, std::ostream &os) {
-  show(*p, os);
-  auto flags = os.flags();
-  os << " (" << std::hex << std::showbase << p << ")";
-  os.flags(flags);
+void showValue(T const *p, std::ostream &os) {
+  if (p) {
+    show(*p, os);
+  }
+  os << " (";
+  showValue(static_cast<const void *>(p), os);
+  os << ")";
 }
 
 template <typename T, typename Deleter>
